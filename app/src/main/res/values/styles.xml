@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="cabecalho">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@color/viridian</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:text">@string/titulo_cabecalho</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="tamanho_fonte_titulo">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="btn_estilo">
+        <item name="android:textSize">20sp</item>
+    </style>
+</resources>
