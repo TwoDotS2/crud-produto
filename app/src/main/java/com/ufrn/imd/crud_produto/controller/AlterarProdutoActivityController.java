@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ufrn.imd.crud_produto.R;
 
-public class ListarProdutosActivity extends AppCompatActivity {
+public class AlterarProdutoActivityController extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar_produtos);
+        setContentView(R.layout.activity_alterar_produto);
     }
 }
