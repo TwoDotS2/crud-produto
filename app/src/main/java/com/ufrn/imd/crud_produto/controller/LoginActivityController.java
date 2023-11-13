@@ -6,14 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ufrn.imd.crud_produto.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivityController extends AppCompatActivity {
 
     private EditText editTextLogin;
     private EditText editTextSenha;
@@ -40,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             String usuarioExiste = sharedPreferences.getString("login", loginUsuario);
 
             if( !usuarioExiste.isEmpty() ){
-                Intent myIntent = new Intent(LoginActivity.this, MenuPrincipalActivity.class);
+                Intent myIntent = new Intent(LoginActivityController.this, MenuPrincipalActivityController.class);
                 startActivity(myIntent);
 
             } else {
@@ -51,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     void inicializarComponentes(){
-        editTextLogin = this.findViewById(R.id.editTextLogin);
-        editTextSenha = this.findViewById(R.id.editTextSenha);
-        buttonEntrar = this.findViewById(R.id.buttonEntrar);
+        editTextLogin = (EditText) this.findViewById(R.id.editTextLogin);
+        editTextSenha = (EditText) this.findViewById(R.id.editTextSenha);
+        buttonEntrar = (Button) this.findViewById(R.id.buttonEntrar);
     }
 }

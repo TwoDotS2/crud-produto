@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Crud_produto"
         tools:targetApi="31">
         <activity
-            android:name=".controller.LoginActivity"
+            android:name=".controller.LoginActivityController"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,27 +22,27 @@
         </activity>
 
         <activity
-            android:name=".controller.MenuPrincipalActivity"
+            android:name=".controller.MenuPrincipalActivityController"
             android:exported="false">
         </activity>
 
         <activity
-            android:name=".controller.CadastrarProdutoActivity"
+            android:name=".controller.CadastrarProdutoActivityController"
             android:exported="false">
         </activity>
 
         <activity
-            android:name=".controller.AlterarProdutoActivity"
+            android:name=".controller.AlterarProdutoActivityController"
             android:exported="false">
         </activity>
 
         <activity
-            android:name=".controller.DeletarProdutoActivity"
+            android:name=".controller.DeletarProdutoActivityController"
             android:exported="false">
         </activity>
 
         <activity
-            android:name=".controller.ListarProdutosActivity"
+            android:name=".controller.ListarProdutosActivityController"
             android:exported="false">
         </activity>
     </application>

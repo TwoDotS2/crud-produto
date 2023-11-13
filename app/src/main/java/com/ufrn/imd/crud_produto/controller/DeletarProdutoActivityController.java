@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ufrn.imd.crud_produto.R;
 
-public class DeletarProdutoActivity extends AppCompatActivity {
+public class DeletarProdutoActivityController extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

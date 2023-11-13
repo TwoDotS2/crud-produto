@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ufrn.imd.crud_produto.R;
 
-public class MenuPrincipalActivity extends AppCompatActivity {
+public class MenuPrincipalActivityController extends AppCompatActivity {
 
     private Button buttonCadastrar;
     private Button buttonAlterar;
@@ -22,22 +22,22 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         inicializarComponentes();
 
         buttonCadastrar.setOnClickListener(view -> {
-            Intent intentCadastrarProduto = new Intent(MenuPrincipalActivity.this, CadastrarProdutoActivity.class);
+            Intent intentCadastrarProduto = new Intent(MenuPrincipalActivityController.this, CadastrarProdutoActivityController.class);
             startActivity(intentCadastrarProduto);
         });
 
         buttonAlterar.setOnClickListener(view -> {
-            Intent intentAlterarProduto = new Intent(MenuPrincipalActivity.this, AlterarProdutoActivity.class);
+            Intent intentAlterarProduto = new Intent(MenuPrincipalActivityController.this, AlterarProdutoActivityController.class);
             startActivity(intentAlterarProduto);
         });
 
         buttonDeletar.setOnClickListener(view -> {
-            Intent intentDeletarProduto = new Intent(MenuPrincipalActivity.this, DeletarProdutoActivity.class);
+            Intent intentDeletarProduto = new Intent(MenuPrincipalActivityController.this, DeletarProdutoActivityController.class);
             startActivity(intentDeletarProduto);
         });
 
         buttonListar.setOnClickListener(view -> {
-            Intent intentListarProduto = new Intent(MenuPrincipalActivity.this, ListarProdutosActivity.class);
+            Intent intentListarProduto = new Intent(MenuPrincipalActivityController.this, ListarProdutosActivityController.class);
             startActivity(intentListarProduto);
         });
     }
