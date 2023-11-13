@@ -1,0 +1,45 @@
+<resources>
+    <!--   Cabeçalho  -->
+    <string name="titulo_cabecalho">IMDMarket©</string>
+
+    <!--  Login  -->
+    <string name="app_name">crud_produto</string>
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="btn_entrar">Entrar</string>
+    <string name="txt_esqueceu_senha">Esqueci minha senha/login</string>
+    <string name="txt_realizar_cadastro">Cadastre-se</string>
+
+    <!--   Menu Principal  -->
+    <string name="txt_deseja_fazer">O que deseja fazer?</string>
+    <string name="btn_cadastrar_produto">Cadastrar\nproduto</string>
+    <string name="btn_listar_produto">Listar\nprodutos</string>
+    <string name="btn_alterar_produto">Alterar\nproduto</string>
+    <string name="btn_deletar_produto">Deletar\nproduto</string>
+
+    <!--  Cadastrar produto  -->
+    <string name="titulo_cadastrar_produto">CADASTRAR PRODUTO</string>
+    <string name="btn_salvar">Salvar</string>
+    <string name="btn_limpar">Limpar</string>
+
+    <!--  Alterar produto  -->
+    <string name="titulo_alterar_produto">ALTERAR PRODUTO</string>
+    <string name="btn_alterar">Alterar</string>
+
+    <!--  Informações sobre produto  -->
+    <string name="codigo_produto">Código do produto:</string>
+    <string name="nome_produto">Nome do produto:</string>
+    <string name="descricao_produto">Descrição do produto:</string>
+    <string name="estoque">Estoque:</string>
+
+
+    <!--  Listar produto  -->
+    <string name="titulo_listar_produto">LISTA DE PRODUTOS</string>
+    <string name="btn_voltar">Voltar</string>
+
+
+    <!--  Deletar produto -->
+    <string name="titulo_deletar_produto">DELETAR PRODUTO</string>
+    <string name="btn_deletar">Deletar</string>
+
+</resources>
