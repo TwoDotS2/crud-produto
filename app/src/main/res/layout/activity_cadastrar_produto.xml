@@ -51,7 +51,7 @@
             android:text="@string/codigo_produto" />
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/editTextCodigoCadastroProduto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -68,7 +68,7 @@
             android:text="@string/nome_produto" />
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/editTextNomeCadastroProduto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -85,7 +85,7 @@
             android:text="@string/descricao_produto" />
 
         <EditText
-            android:id="@+id/editTextText4"
+            android:id="@+id/editTextDescricaoCadastroProduto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -102,7 +102,7 @@
             android:text="@string/estoque" />
 
         <EditText
-            android:id="@+id/editTextText5"
+            android:id="@+id/editTextEstoqueCadastroProduto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -110,7 +110,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonSalvarCadastroProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_salvar"
@@ -122,7 +122,7 @@
         app:layout_constraintVertical_bias="0.855" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonLimparCadastroProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_limpar"
