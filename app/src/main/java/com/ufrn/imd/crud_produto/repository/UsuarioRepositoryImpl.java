@@ -1,4 +1,4 @@
-package com.ufrn.imd.crud_produto.model;
+package com.ufrn.imd.crud_produto.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
