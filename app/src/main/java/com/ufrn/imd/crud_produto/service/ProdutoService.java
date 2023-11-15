@@ -29,9 +29,8 @@ public class ProdutoService {
         final Integer indiceDescricaoProduto = cursor.getColumnIndex("descricao_produto");
         final Integer indiceQuantidadeEstoqueProduto = cursor.getColumnIndex("quantidade_estoque_produto");
 
-        ProdutoDTO produtoDTO = new ProdutoDTO();
-
         while (cursor.moveToNext()) {
+            ProdutoDTO produtoDTO = new ProdutoDTO();
             produtoDTO.setCodigo(cursor.getString(indiceCodigoProduto));
             produtoDTO.setNome(cursor.getString(indiceNomeProduto));
             produtoDTO.setDescricao(cursor.getString(indiceDescricaoProduto));
