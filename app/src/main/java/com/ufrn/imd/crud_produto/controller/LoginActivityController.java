@@ -22,15 +22,14 @@ public class LoginActivityController extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         inicializarComponentes();
 
         SharedPreferences sharedPreferences =
                 getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         editor.putString("login","adminadmin");
-        editor.commit();
+        editor.apply();
 
         buttonEntrar.setOnClickListener( v -> {
             String senhaUsuario = editTextSenha.getText().toString();
