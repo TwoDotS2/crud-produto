@@ -2,23 +2,35 @@ package com.ufrn.imd.crud_produto.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.ufrn.imd.crud_produto.dto.ProdutoDTO;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProdutoRepositoryImpl extends SQLiteOpenHelper {
 
-    public void ProdutoRepositoryImpl(){
+    private final String colunaCodigoProduto = "codigo_produto";
+    private final String colunaNomeProduto = "nome_produto";
+    private final String colunaDescricaoProduto = "descricao_produto";
+    private final String colunaQuantidadeEstoqueProduto = "quantidade_estoque_produto";
+    private final String tabelaProduto = "produto";
 
-    }
     public ProdutoRepositoryImpl(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE produto(id_produto INT PRIMARY KEY AUTOINCREMENT, codigo_produto VARCHAR(13) UNIQUE, nome_produto VARCHAR(50), descricao_produto TEXT, quantidade_estoque_produto INT NOT NULL)");
+        String createDatabase = "CREATE TABLE " + tabelaProduto +"(id_produto INTEGER PRIMARY KEY AUTOINCREMENT, " + colunaCodigoProduto + " VARCHAR(13) UNIQUE, " +
+                colunaNomeProduto + " VARCHAR(50), " + colunaDescricaoProduto + " TEXT, " + colunaQuantidadeEstoqueProduto + " INT NOT NULL)";
+
+        sqLiteDatabase.execSQL(createDatabase);
     }
 
     @Override
@@ -26,16 +38,30 @@ public class ProdutoRepositoryImpl extends SQLiteOpenHelper {
 
     }
 
-    public void registrarProduto(String codigoProduto, String nomeProduto, String descricaoProduto, Integer quantidadeEstoqueProduto){
+    public void registrarProduto(ProdutoDTO produtoDTO){
         SQLiteDatabase bancoDeDados = this.getWritableDatabase();
         ContentValues registroDeProduto = new ContentValues();
 
-        registroDeProduto.put("codigo_produto", codigoProduto);
-        registroDeProduto.put("nome_produto", nomeProduto);
-        registroDeProduto.put("descricao_produto", descricaoProduto);
-        registroDeProduto.put("quantidade_produto", quantidadeEstoqueProduto);
+        registroDeProduto.put(colunaCodigoProduto, produtoDTO.getCodigo());
+        registroDeProduto.put(colunaNomeProduto, produtoDTO.getNome());
+        registroDeProduto.put(colunaDescricaoProduto, produtoDTO.getDescricao());
+        registroDeProduto.put(colunaQuantidadeEstoqueProduto, produtoDTO.getQuantidadeEstoque());
 
-        bancoDeDados.insert("produto", null, registroDeProduto);
+        bancoDeDados.insert(tabelaProduto, null, registroDeProduto);
         bancoDeDados.close();
+    }
+
+    public Cursor retornarProdutos(){
+        SQLiteDatabase bancoDeDados = this.getReadableDatabase();
+        String querySelectProdutos = "SELECT " + colunaCodigoProduto + ", " + colunaNomeProduto + ", "
+                + colunaDescricaoProduto + ", " + colunaQuantidadeEstoqueProduto + " FROM produto";
+
+        Cursor produtos = null;
+        if(bancoDeDados != null){
+            produtos = bancoDeDados.rawQuery(querySelectProdutos, null);
+        }
+
+        produtos.close();
+        return produtos;
     }
 }
