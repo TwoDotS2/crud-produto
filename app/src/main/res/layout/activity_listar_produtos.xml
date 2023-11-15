@@ -31,6 +31,7 @@
         app:layout_constraintVertical_bias="0.095" />
 
     <ListView
+        android:id="@+id/listViewProdutosCadastrados"
         android:layout_width="410dp"
         android:layout_height="516dp"
         android:layout_marginStart="1dp"
@@ -43,7 +44,7 @@
         app:layout_constraintVertical_bias="0.497" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonVoltar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_voltar"
