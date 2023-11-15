@@ -3,12 +3,14 @@ package com.ufrn.imd.crud_produto.controller;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ufrn.imd.crud_produto.R;
-import com.ufrn.imd.crud_produto.service.CadastrarProdutoService;
+import com.ufrn.imd.crud_produto.dto.ProdutoDTO;
+import com.ufrn.imd.crud_produto.service.ProdutoService;
 
 public class CadastrarProdutoActivityController extends AppCompatActivity {
     public Button buttonSalvarCadastroProduto;
@@ -32,16 +34,27 @@ public class CadastrarProdutoActivityController extends AppCompatActivity {
             editTextNomeCadastroProduto.setText("");
         });
 
-        CadastrarProdutoService cadastrarProdutoService = new CadastrarProdutoService(getApplicationContext());
+        ProdutoService cadastrarProdutoService = new ProdutoService(getApplicationContext());
 
         buttonSalvarCadastroProduto.setOnClickListener(view -> {
             String codigoProduto = editTextCodigoCadastroProduto.getText().toString();
             String nomeProduto = editTextNomeCadastroProduto.getText().toString();
-            String descricaoProduto = editTextDescricaoCadastroProduto.getText().toString();
-            String aux = editTextEstoqueCadastroProduto.getText().toString();
-            Integer estoqueProduto = Integer.parseInt(aux);
 
-            cadastrarProdutoService.registarProduto(codigoProduto, nomeProduto, descricaoProduto, estoqueProduto);
+            if (!codigoProduto.isEmpty() && !nomeProduto.isEmpty()) {
+                String descricaoProduto = editTextDescricaoCadastroProduto.getText().toString();
+                Integer quantidadeEstoqueProduto = Integer.parseInt(editTextEstoqueCadastroProduto.getText().toString());
+
+                ProdutoDTO produtoDTO = new ProdutoDTO();
+
+                produtoDTO.setCodigo(codigoProduto);
+                produtoDTO.setNome(nomeProduto);
+                produtoDTO.setDescricao(descricaoProduto);
+                produtoDTO.setQuantidadeEstoque(quantidadeEstoqueProduto);
+
+                cadastrarProdutoService.registarProduto(produtoDTO);
+            } else {
+                Toast.makeText(getApplicationContext(), "Código ou Nome Não preenchidos!", Toast.LENGTH_LONG).show();
+            }
         });
     }
 
