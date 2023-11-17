@@ -1,5 +1,7 @@
 package com.ufrn.imd.crud_produto.controller;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,42 +32,59 @@ public class CadastrarProdutoActivityController extends AppCompatActivity {
         buttonLimparCadastroProduto.setOnClickListener(view -> {
             editTextCodigoCadastroProduto.setText("");
             editTextEstoqueCadastroProduto.setText("");
-            editTextCodigoCadastroProduto.setText("");
+            editTextDescricaoCadastroProduto.setText("");
             editTextNomeCadastroProduto.setText("");
         });
 
-        ProdutoService cadastrarProdutoService = new ProdutoService(getApplicationContext());
+        ProdutoService produtoService = new ProdutoService(getApplicationContext());
 
         buttonSalvarCadastroProduto.setOnClickListener(view -> {
             String codigoProduto = editTextCodigoCadastroProduto.getText().toString();
             String nomeProduto = editTextNomeCadastroProduto.getText().toString();
+            String descricaoProduto = editTextDescricaoCadastroProduto.getText().toString();
 
-            if (!codigoProduto.isEmpty() && !nomeProduto.isEmpty()) {
-                String descricaoProduto = editTextDescricaoCadastroProduto.getText().toString();
-                Integer quantidadeEstoqueProduto = Integer.parseInt(editTextEstoqueCadastroProduto.getText().toString());
+            Integer quantidadeEstoqueProduto;
+            String aux = editTextEstoqueCadastroProduto.getText().toString();
 
-                ProdutoDTO produtoDTO = new ProdutoDTO();
+            if(aux.isEmpty())
+                quantidadeEstoqueProduto = null;
+            else
+                quantidadeEstoqueProduto = Integer.parseInt(aux);
 
-                produtoDTO.setCodigo(codigoProduto);
-                produtoDTO.setNome(nomeProduto);
-                produtoDTO.setDescricao(descricaoProduto);
-                produtoDTO.setQuantidadeEstoque(quantidadeEstoqueProduto);
+            if (!codigoProduto.isEmpty() && !nomeProduto.isEmpty() &&
+                !descricaoProduto.isEmpty() && quantidadeEstoqueProduto != null) {
 
-                cadastrarProdutoService.registarProduto(produtoDTO);
+                ProdutoDTO produtoDTO = new ProdutoDTO(codigoProduto, nomeProduto, descricaoProduto, quantidadeEstoqueProduto);
+
+                try {
+                    produtoService.registarProduto(produtoDTO);
+                    Toast.makeText(getApplicationContext(), "Produto cadastrado com sucesso!", Toast.LENGTH_LONG).show();
+                    voltarParaMenuPrincipal();
+
+                } catch (SQLiteConstraintException e){
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    voltarParaMenuPrincipal();
+
+                }
+
             } else {
-                Toast.makeText(getApplicationContext(), "Código ou Nome Não preenchidos!", Toast.LENGTH_LONG).show();
+                String erro = "Preencha todos os itens";
+                Toast.makeText(getApplicationContext(), erro, Toast.LENGTH_LONG).show();
             }
         });
     }
 
     private void inicializarComponentes() {
-        buttonSalvarCadastroProduto = (Button) this.findViewById(R.id.buttonSalvarCadastroProduto);
-        buttonLimparCadastroProduto = (Button) this.findViewById(R.id.buttonLimparCadastroProduto);
-        editTextCodigoCadastroProduto = (EditText) this.findViewById(R.id.editTextCodigoCadastroProduto);
-        editTextNomeCadastroProduto = (EditText) this.findViewById(R.id.editTextNomeCadastroProduto);
-        editTextDescricaoCadastroProduto = (EditText) this.findViewById(R.id.editTextDescricaoCadastroProduto);
-        editTextEstoqueCadastroProduto = (EditText) this.findViewById(R.id.editTextEstoqueCadastroProduto);
+        buttonSalvarCadastroProduto = (Button) this.findViewById(R.id.buttonDeletarProduto);
+        buttonLimparCadastroProduto = (Button) this.findViewById(R.id.buttonLimparDeletarProduto);
+        editTextCodigoCadastroProduto = (EditText) this.findViewById(R.id.editTextCodigoDeletarProduto);
+        editTextNomeCadastroProduto = (EditText) this.findViewById(R.id.editTextNomeAlteracaoProduto);
+        editTextDescricaoCadastroProduto = (EditText) this.findViewById(R.id.editTextDescricaoAlteracaoProduto);
+        editTextEstoqueCadastroProduto = (EditText) this.findViewById(R.id.editTextEstoqueAlteracaoProduto);
     }
 
-
+    private void voltarParaMenuPrincipal(){
+        Intent intentMenuPrincipal = new Intent(this, MenuPrincipalActivityController.class);
+        startActivity(intentMenuPrincipal);
+    }
 }

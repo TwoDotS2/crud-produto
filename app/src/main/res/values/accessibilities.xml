@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="descricao_layout_cabecalho">Cabeçalho da aplicação</string>
+    <string name="botao_voltar">Botão para votar ao menu principal</string>
+</resources>

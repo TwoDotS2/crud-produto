@@ -1,6 +1,9 @@
 package com.ufrn.imd.crud_produto.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -8,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ufrn.imd.crud_produto.R;
+import com.ufrn.imd.crud_produto.adapter.ProdutoDTOAdpter;
 import com.ufrn.imd.crud_produto.dto.ProdutoDTO;
 import com.ufrn.imd.crud_produto.service.ProdutoService;
 
@@ -23,9 +27,15 @@ public class ListarProdutosActivityController extends AppCompatActivity {
         inicializarComponentes();
 
         ProdutoService produtoService = new ProdutoService(getApplicationContext());
-        ArrayList<ProdutoDTO> produtosDTO = produtoService.retornarProdutos();
+        final ArrayList<ProdutoDTO> produtosDTO = produtoService.retornarProdutos();
 
-        //TODO: descobrir como criar itens no listView
+        ProdutoDTOAdpter produtoDTOAdpter = new ProdutoDTOAdpter(this, produtosDTO);
+
+        listViewProdutosCadastrados.setAdapter(produtoDTOAdpter);
+
+        buttonVoltar.setOnClickListener(view -> {
+            voltarParaMenuPrincipal();
+        });
     }
 
     private void inicializarComponentes() {
@@ -33,4 +43,8 @@ public class ListarProdutosActivityController extends AppCompatActivity {
         listViewProdutosCadastrados = (ListView) this.findViewById(R.id.listViewProdutosCadastrados);
     }
 
+    private void voltarParaMenuPrincipal(){
+        Intent intentMenuPrincipal = new Intent(this, MenuPrincipalActivityController.class);
+        startActivity(intentMenuPrincipal);
+    }
 }
