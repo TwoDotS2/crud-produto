@@ -5,14 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/cabecalho"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <include
+        layout="@layout/cabecalho"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"> </include>
 
     <TextView
         android:id="@+id/titulo_deletar_produto"
@@ -20,9 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="71dp"
+        android:layout_marginBottom="564dp"
         android:gravity="center"
-        android:text="@string/titulo_deletar_produto"
 
+        android:text="@string/titulo_deletar_produto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -34,9 +31,10 @@
         android:id="@+id/linearLayout2"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="420dp"
         android:orientation="vertical"
-        android:paddingHorizontal="25dp"
 
+        android:paddingHorizontal="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -51,11 +49,12 @@
             android:text="@string/codigo_produto" />
 
         <EditText
-            android:id="@+id/editTextCodigoCadastroProduto"
+            android:id="@+id/editTextCodigoDeletarProduto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="number"
+            />
 
         <Space
             android:layout_width="match_parent"
@@ -72,7 +71,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonSalvarCadastroProduto"
+        android:id="@+id/buttonDeletarProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_deletar"
@@ -84,7 +83,7 @@
         app:layout_constraintVertical_bias="0.522" />
 
     <Button
-        android:id="@+id/buttonLimparCadastroProduto"
+        android:id="@+id/buttonLimparDeletarProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_limpar"

@@ -5,30 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/cabecalho"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/cabecalho"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"> </include>
 
     <TextView
         android:id="@+id/titulo_alterar_produto"
         style="@style/tamanho_fonte_titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="71dp"
+
         android:gravity="center"
         android:text="@string/titulo_alterar_produto"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.16" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -39,10 +36,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.411">
+        app:layout_constraintTop_toBottomOf="@+id/titulo_alterar_produto"
+        app:layout_constraintVertical_bias="0.243">
 
         <TextView
             android:id="@+id/textView7"
@@ -51,11 +48,11 @@
             android:text="@string/codigo_produto" />
 
         <EditText
-            android:id="@+id/editTextCodigoCadastroProduto"
+            android:id="@+id/editTextCodigoDeletarProduto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="number" />
 
         <Space
             android:layout_width="match_parent"
@@ -68,9 +65,9 @@
             android:text="@string/nome_produto" />
 
         <EditText
-            android:id="@+id/editTextNomeCadastroProduto"
+            android:id="@+id/editTextNomeAlteracaoProduto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
             android:inputType="text" />
 
@@ -85,9 +82,9 @@
             android:text="@string/descricao_produto" />
 
         <EditText
-            android:id="@+id/editTextDescricaoCadastroProduto"
+            android:id="@+id/editTextDescricaoAlteracaoProduto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
             android:inputType="text" />
 
@@ -102,15 +99,16 @@
             android:text="@string/estoque" />
 
         <EditText
-            android:id="@+id/editTextEstoqueCadastroProduto"
+            android:id="@+id/editTextEstoqueAlteracaoProduto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="number" />
+
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonSalvarCadastroProduto"
+        android:id="@+id/buttonDeletarProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_alterar"
@@ -122,7 +120,7 @@
         app:layout_constraintVertical_bias="0.855" />
 
     <Button
-        android:id="@+id/buttonLimparCadastroProduto"
+        android:id="@+id/buttonLimparDeletarProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_limpar"

@@ -10,16 +10,17 @@ import androidx.annotation.Nullable;
 
 import com.ufrn.imd.crud_produto.dto.ProdutoDTO;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class ProdutoRepositoryImpl extends SQLiteOpenHelper {
+
+
+public class ProdutoRepositoryImpl extends SQLiteOpenHelper implements ProdutoRepository{
 
     private final String colunaCodigoProduto = "codigo_produto";
     private final String colunaNomeProduto = "nome_produto";
     private final String colunaDescricaoProduto = "descricao_produto";
     private final String colunaQuantidadeEstoqueProduto = "quantidade_estoque_produto";
-    private final String tabelaProduto = "produto";
+    private final String tabelaProdutos = "produto";
+    private static SQLiteDatabase bancoDeDados;
 
     public ProdutoRepositoryImpl(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -27,8 +28,8 @@ public class ProdutoRepositoryImpl extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createDatabase = "CREATE TABLE " + tabelaProduto +"(id_produto INTEGER PRIMARY KEY AUTOINCREMENT, " + colunaCodigoProduto + " VARCHAR(13) UNIQUE, " +
-                colunaNomeProduto + " VARCHAR(50), " + colunaDescricaoProduto + " TEXT, " + colunaQuantidadeEstoqueProduto + " INT NOT NULL)";
+        String createDatabase = "CREATE TABLE " + tabelaProdutos +"(id_produto INTEGER PRIMARY KEY AUTOINCREMENT, " + colunaCodigoProduto + " VARCHAR(13) UNIQUE, " +
+                colunaNomeProduto + " VARCHAR(50), " + colunaDescricaoProduto + " TEXT, " + colunaQuantidadeEstoqueProduto + " INT)";
 
         sqLiteDatabase.execSQL(createDatabase);
     }
@@ -39,7 +40,7 @@ public class ProdutoRepositoryImpl extends SQLiteOpenHelper {
     }
 
     public void registrarProduto(ProdutoDTO produtoDTO){
-        SQLiteDatabase bancoDeDados = this.getWritableDatabase();
+        bancoDeDados = this.getWritableDatabase();
         ContentValues registroDeProduto = new ContentValues();
 
         registroDeProduto.put(colunaCodigoProduto, produtoDTO.getCodigo());
@@ -47,21 +48,41 @@ public class ProdutoRepositoryImpl extends SQLiteOpenHelper {
         registroDeProduto.put(colunaDescricaoProduto, produtoDTO.getDescricao());
         registroDeProduto.put(colunaQuantidadeEstoqueProduto, produtoDTO.getQuantidadeEstoque());
 
-        bancoDeDados.insert(tabelaProduto, null, registroDeProduto);
-        bancoDeDados.close();
+        bancoDeDados.insert(tabelaProdutos, null, registroDeProduto);
     }
 
     public Cursor retornarProdutos(){
-        SQLiteDatabase bancoDeDados = this.getReadableDatabase();
+        bancoDeDados = this.getReadableDatabase();
         String querySelectProdutos = "SELECT " + colunaCodigoProduto + ", " + colunaNomeProduto + ", "
                 + colunaDescricaoProduto + ", " + colunaQuantidadeEstoqueProduto + " FROM produto";
 
-        Cursor produtos = null;
-        if(bancoDeDados != null){
-            produtos = bancoDeDados.rawQuery(querySelectProdutos, null);
-        }
-
-        produtos.close();
-        return produtos;
+        return bancoDeDados.rawQuery(querySelectProdutos, null);
     }
+
+    public Cursor buscarProdutoPorCodigo(String codigoProduto){
+        bancoDeDados = this.getReadableDatabase();
+        String querySelectProdutos = "SELECT * FROM " + tabelaProdutos + " Where "
+                + colunaCodigoProduto + "=" + codigoProduto;
+
+        return bancoDeDados.rawQuery(querySelectProdutos, null);
+    }
+
+    public void alterarProduto(ProdutoDTO produtoDTO){
+        bancoDeDados = this.getWritableDatabase();
+        ContentValues registroDeProduto = new ContentValues();
+
+        registroDeProduto.put(colunaNomeProduto, produtoDTO.getNome());
+        registroDeProduto.put(colunaDescricaoProduto, produtoDTO.getDescricao());
+        registroDeProduto.put(colunaQuantidadeEstoqueProduto, produtoDTO.getQuantidadeEstoque());
+
+        String where = colunaCodigoProduto + "=" + produtoDTO.getCodigo();
+        bancoDeDados.update(tabelaProdutos, registroDeProduto, where, null);
+    }
+
+    public void deletarProduto(String codigoProduto) {
+        bancoDeDados = this.getWritableDatabase();
+        String where = colunaCodigoProduto + "=" + codigoProduto;
+        bancoDeDados.delete(tabelaProdutos, where, null);
+    }
+
 }

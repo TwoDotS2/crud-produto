@@ -35,11 +35,16 @@
 
     <!--  Listar produto  -->
     <string name="titulo_listar_produto">LISTA DE PRODUTOS</string>
+    <string name="titulo_codigo_produto">Código:</string>
+    <string name="titulo_nome_produto">Nome:</string>
+    <string name="titulo_quantidade_estoque_produto">Qtd. Estoque:</string>
+    <string name="titulo_descricao_produto">Descrição:</string>
     <string name="btn_voltar">Voltar</string>
 
 
     <!--  Deletar produto -->
     <string name="titulo_deletar_produto">DELETAR PRODUTO</string>
     <string name="btn_deletar">Deletar</string>
+
 
 </resources>
