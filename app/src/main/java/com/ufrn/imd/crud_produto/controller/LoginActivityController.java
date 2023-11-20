@@ -35,9 +35,9 @@ public class LoginActivityController extends AppCompatActivity {
             String senhaUsuario = editTextSenha.getText().toString();
             String loginUsuario = editTextLogin.getText().toString() + senhaUsuario;
 
-            String usuarioExiste = sharedPreferences.getString("login", loginUsuario);
+            String validarUsuario = sharedPreferences.getString("login", "");
 
-            if( !usuarioExiste.isEmpty() ){
+            if( loginUsuario.equals(validarUsuario) ){
                 Intent myIntent = new Intent(LoginActivityController.this, MenuPrincipalActivityController.class);
                 startActivity(myIntent);
 
